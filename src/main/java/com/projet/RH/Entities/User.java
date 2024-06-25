@@ -76,7 +76,7 @@ public class User implements Serializable {
     @OneToMany(mappedBy = "usernotif")
     @JsonIgnore
     private Set<Notifications> notifications;
-    
+
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(  name = "user_roles",
             joinColumns = @JoinColumn(name = "user_id"),
