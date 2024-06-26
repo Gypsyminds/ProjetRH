@@ -12,6 +12,9 @@ import com.projet.RH.payload.response.JwtResponse;
 import com.projet.RH.payload.response.MessageResponse;
 import com.projet.RH.security.jwt.JwtUtils;
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 import jakarta.websocket.server.PathParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -73,9 +76,9 @@ public class AuthControlleur {
 
 
     @PostMapping(value="/signup" , consumes = {"multipart/form-data"})
-    public ResponseEntity<?> registerUsers(@Valid @PathParam("username") String username,
-                                           @PathParam("email") String email,
-                                           @PathParam("password") String password,
+    public ResponseEntity<?> registerUsers(@Valid @NotBlank @PathParam("username") String username,
+                                           @Valid  @NotBlank @Email  @Size(min = 4, max = 20) @PathParam("email") String email,
+                                           @Valid  @NotBlank  @Size(min = 6, max = 40) @PathParam("password") String password,
                                            @PathParam("role")  String role ,
                                            @PathParam("tel1")  String tel1 ,
                                            @PathParam("tel2")  String tel2 ,
@@ -98,6 +101,12 @@ public class AuthControlleur {
                     .badRequest()
                     .body(new MessageResponse("Error: Email is already in use!"));
         }
+      if (username.length() < 4){
+    return ResponseEntity
+            .badRequest()
+            .body(new MessageResponse("Error: username  doit être de 4 caractères minimum"));
+      }
+
 
         // Create new user's account
         User user = new User(username,

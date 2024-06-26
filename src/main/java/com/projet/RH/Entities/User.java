@@ -33,8 +33,10 @@ public class User implements Serializable {
     @NotBlank
     @Size(max = 20)
     private String username;
+
     @Column(unique = true)
     private String email;
+
 
     private String password;
     private String token;
