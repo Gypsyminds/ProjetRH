@@ -82,4 +82,38 @@ public class User implements Serializable {
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles = new HashSet<>();
+
+    public User(String username ,String email, String password, String adresse, Date birthDate, String tel1, String tel2, String ville, String nom, String prenom , String codePostal, String etat, byte[] photo_profil) {
+        this.username = username;
+        this.email = email;
+        this.password = password;
+        this.adresse = adresse ;
+        this.birth_date = birthDate;
+        this.tel1 = tel1;
+        this.tel2 = tel2;
+        this.ville = ville;
+        this.code_postal = codePostal ;
+        this.etat = etat ;
+        this.nom = nom ;
+        this.prenom = prenom ;
+this.photo_profil = photo_profil ;
+    }
+
+
+    public User(String username, String email, String password , String tel1, String tel2, String ville, String codePostal, String adresse, String etat, String nom, String prenom, Date birth_date) {
+        this.username = username;
+        this.email = email;
+        this.password = password;
+        this.tel1 = tel1;
+        this.tel2 = tel2;
+        this.ville =  ville ;
+        this.code_postal = codePostal;
+        this.adresse = adresse ;
+        this.etat =  etat ;
+        this.nom = nom ;
+        this.prenom = prenom ;
+        this.birth_date = birth_date ;
+    }
+
+
 }
